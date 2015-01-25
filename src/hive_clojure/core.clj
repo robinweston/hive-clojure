@@ -16,7 +16,7 @@
     (case total-grid-lines
       0 1
       3 3
-      (/ total-grid-lines 2))))
+      (+ total-grid-lines 2))))
 
 (defn- create-empty-grid [width height]
   (->> "-" (repeat width) vec (repeat height) vec))
