@@ -1,10 +1,12 @@
 (ns hive-clojure.core)
 
+(defn- longest-line-length [grid-lines]
+  (if (empty? grid-lines)
+    0
+    (apply max (map #(count %) grid-lines))))
+
 (defn- calculate-grid-width [grid-lines]
-  (let [longest-grid-line (if (empty? grid-lines)
-                            0
-                            (max (map #(count %) grid-lines)))
-        _ (print "longest grid line" longest-grid-line)]
+  (let [longest-grid-line (longest-line-length grid-lines)]
     (if (= longest-grid-line 0)
       1
       (/ (+ longest-grid-line 7) 4))))

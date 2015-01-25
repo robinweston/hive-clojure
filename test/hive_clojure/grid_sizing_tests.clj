@@ -11,8 +11,19 @@
 
 (facts "grid sizing"
        (fact "Empty grid is sized correctly"
-             (let [grid-text (slurp-grid-text-from-file "empty")
-                   parsed-grid (parse-grid-text grid-text)
+             (let [parsed-grid (parse-grid-text (slurp-grid-text-from-file "empty"))
                    grid-dimensions (retrieve-grid-dimensions parsed-grid)]
                (nth grid-dimensions 0) => 1
-               (nth grid-dimensions 1) => 1)))
+               (nth grid-dimensions 1) => 1))
+
+       (fact "Single white queen grid is sized correctly"
+             (let [parsed-grid (parse-grid-text (slurp-grid-text-from-file "single-white-queen"))
+                   grid-dimensions (retrieve-grid-dimensions parsed-grid)]
+               (nth grid-dimensions 0) => 3
+               (nth grid-dimensions 1) => 3))
+
+       (fact "Two horizontal queens grid is sized correctly"
+             (let [parsed-grid (parse-grid-text (slurp-grid-text-from-file "two-queens-horizontal"))
+                   grid-dimensions (retrieve-grid-dimensions parsed-grid)]
+               (nth grid-dimensions 0) => 4
+               (nth grid-dimensions 1) => 6)))
