@@ -19,7 +19,7 @@
       (+ total-grid-lines 2))))
 
 (defn- create-empty-grid [width height]
-  (->> "-" (repeat width) vec (repeat height) vec))
+  (->> :empty (repeat width) vec (repeat height) vec))
 
 (defn parse-grid-text [raw-grid]
   (print "Parsing grid\n")
