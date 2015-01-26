@@ -9,7 +9,7 @@
 (defn- retrieve-grid-dimensions [grid]
   (vector (count (first grid)) (count grid)))
 
-(facts "grid sizing"
+(facts "grid sizing" ; TODO: test cases?
        (fact "Empty grid is sized correctly"
              (let [parsed-grid (parse-grid-text (slurp-grid-text-from-file "empty"))
                    grid-dimensions (retrieve-grid-dimensions parsed-grid)]
