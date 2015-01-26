@@ -1,13 +1,6 @@
-(ns hive-clojure.insect-parsing-tests
-  (:require [midje.sweet :refer :all]))
-
-(defn parse-tile [tile-string]
-  (let [tile-color (if (= (clojure.string/upper-case tile-string) tile-string) :black :white)
-        insect (case (clojure.string/upper-case tile-string)
-                 "Q" :queen
-                 "A" :ant)]                                 ; todo: use RegEx
-    {:insect insect, :color tile-color}
-    ))
+(ns hive-clojure.tile-parsing-tests
+  (:require [midje.sweet :refer :all])
+  (:require [hive-clojure.tile-parser :refer [parse-tile]]))
 
 (facts "Can parse insect types"
        (fact "Can parse white queen"
