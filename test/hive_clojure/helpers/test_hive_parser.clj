@@ -1,4 +1,4 @@
-(ns hive-clojure.helpers.test-grid-parser
+(ns hive-clojure.helpers.test-hive-parser
   (:require [local-file :refer :all])
   (:require [hive-clojure.core :refer [parse-hive-tiles]] ))
 
