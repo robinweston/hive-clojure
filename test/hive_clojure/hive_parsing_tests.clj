@@ -9,7 +9,18 @@
 
        (fact "Single white queen is in correct position"
              (let [tiles (parse-test-hive-tiles "single-white-queen")]
-               (println "Parsed tiles" tiles)
                (count tiles) => 1
-               (-> tiles first :color) => :white
-               (-> tiles first :insect) => :queen)))
+               tiles => (contains {:color    :white
+                                   :insect   :queen
+                                   :position {:x 1, :y 2}})))
+
+       (fact "Two horizontal queens in correct positions"
+             (let [tiles (parse-test-hive-tiles "two-horizontal-queens")]
+               (count tiles) => 2
+               tiles => (contains {:color    :white
+                                   :insect   :queen
+                                   :position {:x 1, :y 2}})
+               tiles => (contains {:color    :black
+                                   :insect   :queen
+                                   :position {:x 2, :y 3}})
+               )))
