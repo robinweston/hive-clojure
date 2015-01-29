@@ -13,7 +13,7 @@
                (next-to-play game-state) => :black
                ))
 
-       (fact "White plays thirds"
+       (fact "White plays third"
              (let [game-state {:turn-number 2}]
                (next-to-play game-state) => :white
                )))
