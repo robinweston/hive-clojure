@@ -1,11 +1,6 @@
 (ns hive-clojure.turn-ordering-tests
-  (:require [midje.sweet :refer :all]))
-
-(defn next-to-play [game-state]
-  (if (= 0 (mod (:turn-number game-state) 2))
-    :white
-    :black
-    ))
+  (:require [midje.sweet :refer :all])
+  (:require [hive-clojure.turn-ordering :refer [next-to-play]]))
 
 (facts "about turn ordering"
        (fact "White plays first"
