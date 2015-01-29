@@ -62,4 +62,18 @@
                                       :position {:x 0, :y 0}}
                                      ])
                ))
+
+       (fact "At start of game and with two identical tiles duplicate moves are not generated"
+             (let [white-tiles [{:color :white, :insect :ant}
+                                {:color :white, :insect :ant}]
+                   game-state {:turn-number  0
+                               :played-tiles []
+                               :white-tiles  white-tiles
+                               :black-tiles  []}
+                   valid-moves (valid-moves game-state)]
+               valid-moves => (just [{:color    :white
+                                      :insect   :ant
+                                      :position {:x 0, :y 0}}
+                                     ])
+               ))
        )
