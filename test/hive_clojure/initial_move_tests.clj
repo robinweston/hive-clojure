@@ -1,6 +1,7 @@
 (ns hive-clojure.initial-move-tests
   (:require [midje.sweet :refer :all])
-  (:require [hive-clojure.valid-move-generation :refer [valid-moves]]))
+  (:require [hive-clojure.valid-move-generation :refer [valid-moves]])
+  (:require [hive-clojure.helpers.test-hive-parser :refer [parse-test-hive-tiles]]))
 
 (facts "about initial moves"
        (fact "At start of game and with only one tile white has only one valid move"
@@ -31,38 +32,6 @@
                                      ])
                ))
 
-       (future-fact "Remove duplicate moves")
-
-       (fact "At start of game and with one tile black has one valid move"
-             (let [black-tiles [{:color :black, :insect :ant}]
-                   game-state {:turn-number  1
-                               :played-tiles []
-                               :white-tiles  []
-                               :black-tiles  black-tiles}
-                   valid-moves (valid-moves game-state)]
-               valid-moves => (just [{:color    :black
-                                      :insect   :ant
-                                      :position {:x 0, :y 0}}
-                                     ])
-               ))
-
-       (fact "At start of game and with two tiles black has two valid moves"
-             (let [black-tiles [{:color :black, :insect :ant}
-                                {:color :black, :insect :queen}]
-                   game-state {:turn-number  1
-                               :played-tiles []
-                               :white-tiles  []
-                               :black-tiles  black-tiles}
-                   valid-moves (valid-moves game-state)]
-               valid-moves => (just [{:color    :black
-                                      :insect   :ant
-                                      :position {:x 0, :y 0}}
-                                     {:color    :black
-                                      :insect   :queen
-                                      :position {:x 0, :y 0}}
-                                     ])
-               ))
-
        (fact "At start of game and with two identical tiles duplicate moves are not generated"
              (let [white-tiles [{:color :white, :insect :ant}
                                 {:color :white, :insect :ant}]
@@ -76,4 +45,54 @@
                                       :position {:x 0, :y 0}}
                                      ])
                ))
+
+       (fact "At start of game and with one tile black has correct valid moves"
+             (let [black-tiles [{:color :black, :insect :ant}]
+                   game-state {:turn-number  1
+                               :played-tiles (parse-test-hive-tiles "single-white-queen")
+                               :white-tiles  []
+                               :black-tiles  black-tiles}
+                   valid-moves (valid-moves game-state)]
+               (count valid-moves) => 6
+               valid-moves => (contains [{:color    :black
+                                      :insect   :ant
+                                      :position {:x 1, :y 0}}
+                                     {:color    :black
+                                      :insect   :ant
+                                      :position {:x 0, :y 1}}
+                                     {:color    :black
+                                      :insect   :ant
+                                      :position {:x 2, :y 1}}
+                                     {:color    :black
+                                      :insect   :ant
+                                      :position {:x 0, :y 3}}
+                                     {:color    :black
+                                      :insect   :ant
+                                      :position {:x 1, :y 4}}
+                                     {:color    :black
+                                      :insect   :ant
+                                      :position {:x 2, :y 3}}
+                                     ] :in-any-order)
+               ))
+
+
+       (future-fact "At start of game and with two tiles black has two valid moves"
+                    (let [black-tiles [{:color :black, :insect :ant}
+                                       {:color :black, :insect :queen}]
+                          game-state {:turn-number  1
+                                      :played-tiles (parse-test-hive-tiles "single-white-queen")
+                                      :white-tiles  []
+                                      :black-tiles  black-tiles}
+                          valid-moves (valid-moves game-state)]
+                      valid-moves => (just [{:color    :black
+                                             :insect   :ant
+                                             :position {:x 0, :y 0}}
+                                            {:color    :black
+                                             :insect   :queen
+                                             :position {:x 0, :y 0}}
+                                            ])
+                      ))
+
+
+
        )
