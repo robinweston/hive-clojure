@@ -55,44 +55,74 @@
                    valid-moves (valid-moves game-state)]
                (count valid-moves) => 6
                valid-moves => (contains [{:color    :black
-                                      :insect   :ant
-                                      :position {:x 1, :y 0}}
-                                     {:color    :black
-                                      :insect   :ant
-                                      :position {:x 0, :y 1}}
-                                     {:color    :black
-                                      :insect   :ant
-                                      :position {:x 2, :y 1}}
-                                     {:color    :black
-                                      :insect   :ant
-                                      :position {:x 0, :y 3}}
-                                     {:color    :black
-                                      :insect   :ant
-                                      :position {:x 1, :y 4}}
-                                     {:color    :black
-                                      :insect   :ant
-                                      :position {:x 2, :y 3}}
-                                     ] :in-any-order)
+                                          :insect   :ant
+                                          :position {:x 1, :y 0}}
+                                         {:color    :black
+                                          :insect   :ant
+                                          :position {:x 0, :y 1}}
+                                         {:color    :black
+                                          :insect   :ant
+                                          :position {:x 2, :y 1}}
+                                         {:color    :black
+                                          :insect   :ant
+                                          :position {:x 0, :y 3}}
+                                         {:color    :black
+                                          :insect   :ant
+                                          :position {:x 1, :y 4}}
+                                         {:color    :black
+                                          :insect   :ant
+                                          :position {:x 2, :y 3}}
+                                         ] :in-any-order)
                ))
 
 
-       (future-fact "At start of game and with two tiles black has two valid moves"
+       (fact "At start of game and with three tiles (but two indentical) black has correct valid moves"
                     (let [black-tiles [{:color :black, :insect :ant}
+                                       {:color :black, :insect :ant}
                                        {:color :black, :insect :queen}]
                           game-state {:turn-number  1
                                       :played-tiles (parse-test-hive-tiles "single-white-queen")
                                       :white-tiles  []
                                       :black-tiles  black-tiles}
                           valid-moves (valid-moves game-state)]
-                      valid-moves => (just [{:color    :black
-                                             :insect   :ant
-                                             :position {:x 0, :y 0}}
-                                            {:color    :black
-                                             :insect   :queen
-                                             :position {:x 0, :y 0}}
-                                            ])
+                      (count valid-moves) => 12
+                      valid-moves => (contains [{:color    :black
+                                                 :insect   :ant
+                                                 :position {:x 1, :y 0}}
+                                                {:color    :black
+                                                 :insect   :ant
+                                                 :position {:x 0, :y 1}}
+                                                {:color    :black
+                                                 :insect   :ant
+                                                 :position {:x 2, :y 1}}
+                                                {:color    :black
+                                                 :insect   :ant
+                                                 :position {:x 0, :y 3}}
+                                                {:color    :black
+                                                 :insect   :ant
+                                                 :position {:x 1, :y 4}}
+                                                {:color    :black
+                                                 :insect   :ant
+                                                 :position {:x 2, :y 3}}
+                                                {:color    :black
+                                                 :insect   :queen
+                                                 :position {:x 1, :y 0}}
+                                                {:color    :black
+                                                 :insect   :queen
+                                                 :position {:x 0, :y 1}}
+                                                {:color    :black
+                                                 :insect   :queen
+                                                 :position {:x 2, :y 1}}
+                                                {:color    :black
+                                                 :insect   :queen
+                                                 :position {:x 0, :y 3}}
+                                                {:color    :black
+                                                 :insect   :queen
+                                                 :position {:x 1, :y 4}}
+                                                {:color    :black
+                                                 :insect   :queen
+                                                 :position {:x 2, :y 3}}
+                                                ] :in-any-order)
                       ))
-
-
 
        )

@@ -37,9 +37,10 @@
 (defn valid-moves [game-state]
   (let [tiles-to-play (if (= (next-to-play game-state) :white)
                         (:white-tiles game-state)
-                        (:black-tiles game-state))]
-    (if (= 0 (:turn-number game-state))
-      (->> tiles-to-play (map add-zero-position-to-tile) distinct)
-      (find-black-initial-moves game-state)
-      )
+                        (:black-tiles game-state))
+        valid-moves (if (= 0 (:turn-number game-state))
+                      (->> tiles-to-play (map add-zero-position-to-tile))
+                      (find-black-initial-moves game-state)
+                      )]
+    (distinct valid-moves)
     ))
