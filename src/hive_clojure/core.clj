@@ -22,15 +22,9 @@
     (map #(create-tile (val %) line-number (key %)) tile-matches)))
 
 (defn parse-hive-tiles [hive-text]
-  (println "Parsing hive tiles")
-  (println hive-text)
-  (println "")
-  (println "")
 
   (let [grid-lines (-> hive-text split-grid-text-into-lines vec)
         grid-line-numbers (range (count grid-lines))
         parsed-tiles (mapcat #(parse-tiles-from-hive-line (grid-lines %) %) grid-line-numbers)]
-    (println "Parsed tiles")
-    (println parsed-tiles)
     parsed-tiles
     ))
