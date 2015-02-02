@@ -22,4 +22,9 @@
              (let [tile (parse-tile "A")]
                (:insect tile) => :ant
                (:color tile) => :black
+               ))
+       (fact "Can parse spider"
+             (let [tile (parse-tile "S")]
+               (:insect tile) => :spider
+               (:color tile) => :black
                )))
