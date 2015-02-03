@@ -1,4 +1,4 @@
-(ns hive-clojure.tile-parsing-tests
+(ns hive-clojure.test.tile-parsing-tests
   (:require [midje.sweet :refer :all])
   (:require [hive-clojure.tile-parser :refer [parse-tile]]))
 

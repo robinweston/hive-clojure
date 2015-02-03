@@ -1,7 +1,7 @@
-(ns hive-clojure.initial-move-tests
+(ns hive-clojure.test.initial-move-tests
   (:require [midje.sweet :refer :all])
   (:require [hive-clojure.valid-move-generation :refer [valid-moves]])
-  (:require [hive-clojure.helpers.test-hive-parser :refer [parse-test-hive-tiles]]))
+  (:require [hive-clojure.test.helpers.hive-parser :refer [parse-test-hive-tiles]]))
 
 (facts "about initial moves"
        (fact "At start of game and with only one tile white has only one valid move"

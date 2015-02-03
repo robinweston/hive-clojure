@@ -1,6 +1,6 @@
-(ns hive-clojure.hive-parsing-tests
+(ns hive-clojure.test.hive-parsing-tests
   (:require [midje.sweet :refer :all])
-  (:require [hive-clojure.helpers.test-hive-parser :refer :all]))
+  (:require [hive-clojure.test.helpers.hive-parser :refer :all]))
 
 (facts "Tiles are positioned correctly when parsing grid"
        (fact "Empty hive has no tiles"
@@ -22,5 +22,4 @@
                                    :position {:x 1, :y 2}})
                tiles => (contains {:color    :black
                                    :insect   :queen
-                                   :position {:x 2, :y 3}})
-               )))
+                                   :position {:x 2, :y 3}}))))

@@ -1,7 +1,7 @@
-(ns hive-clojure.second-move-tests
+(ns hive-clojure.test.second-move-tests
   (:require [midje.sweet :refer :all])
   (:require [hive-clojure.valid-move-generation :refer [valid-moves]])
-  (:require [hive-clojure.helpers.test-hive-parser :refer [parse-test-hive-tiles]]))
+  (:require [hive-clojure.test.helpers.hive-parser :refer [parse-test-hive-tiles]]))
 
 (facts "about second moves"
        (fact "White second move with one tile available has correct moves"
