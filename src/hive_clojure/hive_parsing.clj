@@ -1,4 +1,4 @@
-(ns hive-clojure.core
+(ns hive-clojure.hive-parsing
   (:require [hive-clojure.tile-parser :refer [parse-tile]]))
 
 (defn- split-grid-text-into-lines [grid-text]
