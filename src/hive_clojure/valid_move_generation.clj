@@ -20,10 +20,18 @@
         free-positions-adjacent-to-played-tiles (cs/difference positions-adjacent-to-played-tiles (set positions-of-played-tiles))]
     free-positions-adjacent-to-played-tiles))
 
+(defn- tiles-in-hand [game-state current-player]
+  (let [all-tiles-in-hand (-> game-state :tiles-in-hand current-player)
+        third-or-greater-turn-for-player? (> (:turn-number game-state) 5)
+        queen-in-hand (first (filter #(= :queen (:insect %)) all-tiles-in-hand))]
+    (if (and third-or-greater-turn-for-player? queen-in-hand)
+      [queen-in-hand]
+      all-tiles-in-hand)))
+
 (defn- find-post-initial-move-moves [game-state]
   (let [current-player (current-player game-state)
         opposition (current-opposition game-state)
-        current-player-tiles-in-hand (-> game-state :tiles-in-hand current-player)
+        current-player-tiles-in-hand (tiles-in-hand game-state current-player)
         positions-adjacent-to-tiles-already-played-by-current-player (find-free-positions-adjacent-to-played-tiles game-state current-player)
         positions-adjacent-to-tiles-played-by-opposition-player (find-free-positions-adjacent-to-played-tiles game-state opposition)
         positions-adjacent-to-tiles-played-by-current-player-but-not-adjacent-to-tiles-played-by-opposition-player
