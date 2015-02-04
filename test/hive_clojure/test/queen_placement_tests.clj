@@ -11,7 +11,7 @@
                                :played-tiles  (parse-test-hive-tiles "sixth-turn")
                                :tiles-in-hand {:white white-tiles}}
                    valid-moves (valid-moves game-state)]
-               (count valid-moves) => 6
+               (count valid-moves) => 3
                valid-moves => (contains [
                                          {:color    :white
                                           :insect   :queen
@@ -22,14 +22,26 @@
                                          {:color    :white
                                           :insect   :queen
                                           :position {:x 2, :y 0}}
-                                         {:color    :white
+                                         ] :in-any-order)
+               ))
+
+       (fact "Black queen must be played by seventh turn"
+             (let [black-tiles [{:color :black, :insect :ant}
+                                {:color :black, :insect :queen}]
+                   game-state {:turn-number   7
+                               :played-tiles  (parse-test-hive-tiles "seventh-turn")
+                               :tiles-in-hand {:black black-tiles}}
+                   valid-moves (valid-moves game-state)]
+               (count valid-moves) => 3
+               valid-moves => (contains [
+                                         {:color    :black
                                           :insect   :queen
-                                          :position {:x 5, :y 3}}
-                                         {:color    :white
+                                          :position {:x 0, :y 6}}
+                                         {:color    :black
                                           :insect   :queen
-                                          :position {:x 5, :y 5}}
-                                         {:color    :white
+                                          :position {:x 2, :y 6}}
+                                         {:color    :black
                                           :insect   :queen
-                                          :position {:x 4, :y 6}}
+                                          :position {:x 1, :y 7}}
                                          ] :in-any-order)
                )))
