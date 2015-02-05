@@ -1,15 +1,15 @@
 (ns hive-clojure.test.second-move-tests
   (:require [midje.sweet :refer :all])
-  (:require [hive-clojure.valid-move-generation :refer [valid-moves]])
+  (:require [hive-clojure.valid-move-generation :refer [valid-next-game-states]])
   (:require [hive-clojure.test.helpers.hive-parser :refer [parse-test-hive-tiles]]))
 
-(facts "about second moves"
+(future-facts "about second moves"
        (fact "White second move with one tile available has correct moves"
              (let [white-tiles [{:color :white, :insect :ant}]
                    game-state {:turn-number  2
                                :played-tiles (parse-test-hive-tiles "two-horizontal-queens")
                                :tiles-in-hand {:white white-tiles}}
-                   valid-moves (valid-moves game-state)]
+                   valid-moves (valid-next-game-states game-state)]
                (count valid-moves) => 3
                valid-moves => (contains [
                                          {:color    :white
@@ -29,7 +29,7 @@
                    game-state {:turn-number  3
                                :played-tiles (parse-test-hive-tiles "two-queens-and-a-white-spider")
                                :tiles-in-hand {:black black-tiles}}
-                   valid-moves (valid-moves game-state)]
+                   valid-moves (valid-next-game-states game-state)]
                (count valid-moves) => 3
                valid-moves => (contains [
                                          {:color    :black

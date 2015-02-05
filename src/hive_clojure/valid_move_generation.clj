@@ -40,9 +40,21 @@
       positions-adjacent-to-tiles-played-by-current-player-but-not-adjacent-to-tiles-played-by-opposition-player
       current-player-tiles-in-hand)))
 
-(defn valid-moves [game-state]
+(defn- make-move [game-state move]
+  (-> game-state
+      (update-in [:played-tiles] conj move)
+      (update-in [:turn-number] inc)
+      (assoc-in [:tiles-in-hand :white] []) ;TODO remove from tiles in hand
+      ))
+
+(defn- make-moves [game-state valid-moves]
+  (map #(make-move game-state %) valid-moves))
+
+(defn valid-next-game-states [game-state]
   (let [valid-moves (case (:turn-number game-state)
                       0 (find-white-initial-moves game-state)
                       1 (find-black-initial-moves game-state)
-                      (find-post-initial-move-moves game-state))]
-    (distinct valid-moves)))
+                      (find-post-initial-move-moves game-state))
+        distinct-valid-moves (distinct valid-moves)
+        new-game-states (make-moves game-state distinct-valid-moves)]
+    new-game-states))
