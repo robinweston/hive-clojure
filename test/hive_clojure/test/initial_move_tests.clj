@@ -19,27 +19,27 @@
                                                }])
                ))
 
-       (future-fact "At start of game and with two tiles white has two valid moves"
-                    (let [white-tiles [{:color :white, :insect :ant}
-                                       {:color :white, :insect :queen}]
-                          game-state {:turn-number   0
-                                      :played-tiles  []
-                                      :tiles-in-hand {:white white-tiles}}
-                          next-game-states (valid-next-game-states game-state)]
-                      (count next-game-states) => 2
-                      next-game-states => (just [{:turn-number   1
-                                                  :tiles-in-hand {:white {:color :white, :insect :queen}}
-                                                  :played-tiles  [{:color    :white
-                                                                   :insect   :ant
-                                                                   :position {:x 0 :y 0}}]
-                                                  }
-                                                 {:turn-number   1
-                                                  :tiles-in-hand {:white {:color :white, :insect :ant}}
-                                                  :played-tiles  [{:color    :white
-                                                                   :insect   :queen
-                                                                   :position {:x 0 :y 0}}]
-                                                  }])
-                      ))
+       (fact "At start of game and with two tiles white has two valid moves"
+             (let [white-tiles [{:color :white, :insect :ant}
+                                {:color :white, :insect :queen}]
+                   game-state {:turn-number   0
+                               :played-tiles  []
+                               :tiles-in-hand {:white white-tiles}}
+                   next-game-states (valid-next-game-states game-state)]
+               (count next-game-states) => 2
+               next-game-states => (contains [{:turn-number   1
+                                               :tiles-in-hand {:white [{:color :white, :insect :queen}]}
+                                               :played-tiles  [{:color    :white
+                                                                :insect   :ant
+                                                                :position {:x 0 :y 0}}]
+                                               }
+                                              {:turn-number   1
+                                               :tiles-in-hand {:white [{:color :white, :insect :ant}]}
+                                               :played-tiles  [{:color    :white
+                                                                :insect   :queen
+                                                                :position {:x 0 :y 0}}]
+                                               }] :in-any-order)
+               ))
 
        (future-fact "At start of game and with two identical tiles duplicate moves are not generated"
                     (let [white-tiles [{:color :white, :insect :ant}
