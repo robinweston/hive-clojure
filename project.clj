@@ -9,7 +9,7 @@
                        :uberjar {:aot :all}
                        :dev     {
                                  :dependencies [
-                                                [midje "1.6.0"]
+                                                [midje "1.6.3"]
                                                 [local-file "0.1.0"]]
                                  :plugins      [[lein-midje "3.1.3"]]
                                  }})
