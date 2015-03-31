@@ -8,9 +8,9 @@
              (let [game-state {:turn-number   2
                                :played-tiles  (parse-test-hive-tiles "two-horizontal-queens")
                                :tiles-in-hand {:white []}}
-                   valid-moves (valid-next-game-states game-state)]
-               (count valid-moves) => 2
-               valid-moves => (contains [
+                   next-game-states (valid-next-game-states game-state)]
+               (count next-game-states) => 2
+               next-game-states => (contains [
                                          {:color    :white
                                           :insect   :queen
                                           :position {:x 1, :y 2}}
