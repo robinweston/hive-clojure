@@ -2,7 +2,7 @@
   (:require [midje.sweet :refer :all])
   (:require [hive-clojure.tile-parser :refer [parse-tile]]))
 
-(future-facts "Can parse insect types"
+(facts "Can parse insect types"
        (fact "Can parse white queen"
              (let [tile (parse-tile "q")]
                (:insect tile) => :queen

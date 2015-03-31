@@ -2,7 +2,7 @@
   (:require [midje.sweet :refer :all])
   (:require [hive-clojure.turn-ordering :refer [current-player]]))
 
-(future-facts "about turn ordering"
+(facts "about turn ordering"
        (fact "White plays first"
              (let [game-state {:turn-number 0}]
                (current-player game-state) => :white))
