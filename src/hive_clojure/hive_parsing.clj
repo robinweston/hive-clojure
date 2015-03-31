@@ -26,5 +26,4 @@
   (let [grid-lines (-> hive-text split-grid-text-into-lines vec)
         grid-line-numbers (range (count grid-lines))
         parsed-tiles (mapcat #(parse-tiles-from-hive-line (grid-lines %) %) grid-line-numbers)]
-    parsed-tiles
-    ))
+    (vec parsed-tiles)))

@@ -40,7 +40,7 @@
       positions-adjacent-to-tiles-played-by-current-player-but-not-adjacent-to-tiles-played-by-opposition-player
       current-player-tiles-in-hand)))
 
-(defn- remove-first [pred coll] ;TODO move to general utilities file
+(defn- remove-first [pred coll]                             ;TODO move to general utilities file
   (let [[pre post] (split-with #(not (pred %)) coll)]
     (concat pre (rest post))))
 
@@ -51,7 +51,7 @@
   (-> game-state
       (update-in [:played-tiles] conj move)
       (update-in [:turn-number] inc)
-      (update-in [:tiles-in-hand :white] remove-tile-in-hand move)))
+      (update-in [:tiles-in-hand (current-player game-state)] remove-tile-in-hand move)))
 
 (defn- make-moves [game-state valid-moves]
   (map #(make-move game-state %) valid-moves))
