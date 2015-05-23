@@ -12,31 +12,25 @@
                                :tiles-in-hand {:white white-tiles :black []}}
                    next-game-states (valid-next-game-states game-state)]
                (count next-game-states) => 3
-               next-game-states => (contains {:played-tiles  [{:color :white, :insect :ant, :position {:x 2, :y 2}}
-                                                              {:color :black, :insect :ant, :position {:x 3, :y 3}}
-                                                              {:color :white, :insect :spider, :position {:x 1, :y 3}}
-                                                              {:color :black, :insect :ant, :position {:x 1, :y 5}}
-                                                              {:color :white, :insect :queen, :position {:x 0, :y 2}}],
-                                              :tiles-in-hand {:white [{:color :white, :insect :ant}]
-                                                              :black []},
-                                              :turn-number   7})
-               next-game-states => (contains {:played-tiles  [{:color :white, :insect :ant, :position {:x 2, :y 2}}
-                                                              {:color :black, :insect :ant, :position {:x 3, :y 3}}
-                                                              {:color :white, :insect :spider, :position {:x 1, :y 3}}
-                                                              {:color :black, :insect :ant, :position {:x 1, :y 5}}
-                                                              {:color :white, :insect :queen, :position {:x 1, :y 1}}],
-                                              :tiles-in-hand {:white [{:color :white, :insect :ant}]
-                                                              :black []},
-                                              :turn-number   7})
+               next-game-states => (contains
+                                     (contains {:played-tiles (just {:color :white, :insect :ant, :position {:x 2, :y 2}}
+                                                                    {:color :black, :insect :ant, :position {:x 3, :y 3}}
+                                                                    {:color :white, :insect :spider, :position {:x 1, :y 3}}
+                                                                    {:color :black, :insect :ant, :position {:x 1, :y 5}}
+                                                                    {:color :white, :insect :queen, :position {:x 0, :y 2}})}))
+               next-game-states => (contains
+                                     (contains {:played-tiles (just {:color :white, :insect :ant, :position {:x 2, :y 2}}
+                                                                    {:color :black, :insect :ant, :position {:x 3, :y 3}}
+                                                                    {:color :white, :insect :spider, :position {:x 1, :y 3}}
+                                                                    {:color :black, :insect :ant, :position {:x 1, :y 5}}
+                                                                    {:color :white, :insect :queen, :position {:x 1, :y 1}})}))
 
-               next-game-states => (contains {:played-tiles  [{:color :white, :insect :ant, :position {:x 2, :y 2}}
-                                                              {:color :black, :insect :ant, :position {:x 3, :y 3}}
-                                                              {:color :white, :insect :spider, :position {:x 1, :y 3}}
-                                                              {:color :black, :insect :ant, :position {:x 1, :y 5}}
-                                                              {:color :white, :insect :queen, :position {:x 2, :y 0}}],
-                                              :tiles-in-hand {:white [{:color :white, :insect :ant}]
-                                                              :black []},
-                                              :turn-number   7})
+               next-game-states => (contains
+                                     (contains {:played-tiles (just {:color :white, :insect :ant, :position {:x 2, :y 2}}
+                                                                    {:color :black, :insect :ant, :position {:x 3, :y 3}}
+                                                                    {:color :white, :insect :spider, :position {:x 1, :y 3}}
+                                                                    {:color :black, :insect :ant, :position {:x 1, :y 5}}
+                                                                    {:color :white, :insect :queen, :position {:x 2, :y 0}})}))
 
                ))
 
@@ -48,31 +42,25 @@
                                :tiles-in-hand {:black black-tiles, :white []}}
                    next-game-states (valid-next-game-states game-state)]
                (count next-game-states) => 3
-               next-game-states => (contains {:played-tiles  [{:color :white, :insect :ant, :position {:x 2, :y 2}}
-                                                              {:color :black, :insect :ant, :position {:x 3, :y 3}}
-                                                              {:color :white, :insect :spider, :position {:x 1, :y 3}}
-                                                              {:color :white, :insect :queen, :position {:x 4, :y 4}}
-                                                              {:color :black, :insect :ant, :position {:x 1, :y 5}}
-                                                              {:color :black, :insect :queen, :position {:x 1, :y 7}}],
-                                              :tiles-in-hand {:black [{:color :black, :insect :ant}],
-                                                              :white []},
-                                              :turn-number   8})
-               next-game-states => (contains {:played-tiles  [{:color :white, :insect :ant, :position {:x 2, :y 2}}
-                                                              {:color :black, :insect :ant, :position {:x 3, :y 3}}
-                                                              {:color :white, :insect :spider, :position {:x 1, :y 3}}
-                                                              {:color :white, :insect :queen, :position {:x 4, :y 4}}
-                                                              {:color :black, :insect :ant, :position {:x 1, :y 5}}
-                                                              {:color :black, :insect :queen, :position {:x 2, :y 6}}],
-                                              :tiles-in-hand {:black [{:color :black, :insect :ant}],
-                                                              :white []},
-                                              :turn-number   8})
-               next-game-states => (contains {:played-tiles  [{:color :white, :insect :ant, :position {:x 2, :y 2}}
-                                                              {:color :black, :insect :ant, :position {:x 3, :y 3}}
-                                                              {:color :white, :insect :spider, :position {:x 1, :y 3}}
-                                                              {:color :white, :insect :queen, :position {:x 4, :y 4}}
-                                                              {:color :black, :insect :ant, :position {:x 1, :y 5}}
-                                                              {:color :black, :insect :queen, :position {:x 0, :y 6}}],
-                                              :tiles-in-hand {:black [{:color :black, :insect :ant}],
-                                                              :white []},
-                                              :turn-number   8})
+               next-game-states => (contains
+                                     (contains {:played-tiles (just {:color :white, :insect :ant, :position {:x 2, :y 2}}
+                                                                    {:color :black, :insect :ant, :position {:x 3, :y 3}}
+                                                                    {:color :white, :insect :spider, :position {:x 1, :y 3}}
+                                                                    {:color :white, :insect :queen, :position {:x 4, :y 4}}
+                                                                    {:color :black, :insect :ant, :position {:x 1, :y 5}}
+                                                                    {:color :black, :insect :queen, :position {:x 1, :y 7}})}))
+               next-game-states => (contains
+                                     (contains {:played-tiles (just {:color :white, :insect :ant, :position {:x 2, :y 2}}
+                                                                    {:color :black, :insect :ant, :position {:x 3, :y 3}}
+                                                                    {:color :white, :insect :spider, :position {:x 1, :y 3}}
+                                                                    {:color :white, :insect :queen, :position {:x 4, :y 4}}
+                                                                    {:color :black, :insect :ant, :position {:x 1, :y 5}}
+                                                                    {:color :black, :insect :queen, :position {:x 2, :y 6}})}))
+               next-game-states => (contains
+                                     (contains {:played-tiles (just {:color :white, :insect :ant, :position {:x 2, :y 2}}
+                                                                    {:color :black, :insect :ant, :position {:x 3, :y 3}}
+                                                                    {:color :white, :insect :spider, :position {:x 1, :y 3}}
+                                                                    {:color :white, :insect :queen, :position {:x 4, :y 4}}
+                                                                    {:color :black, :insect :ant, :position {:x 1, :y 5}}
+                                                                    {:color :black, :insect :queen, :position {:x 0, :y 6}})}))
                )))

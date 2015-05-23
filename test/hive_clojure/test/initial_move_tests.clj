@@ -67,54 +67,54 @@
                                :tiles-in-hand {:black black-tiles :white []}}
                    next-game-states (valid-next-game-states game-state)]
                (count next-game-states) => 6
-               next-game-states => (contains {:turn-number   2 ; TODO write checker for latest move only
-                                              :tiles-in-hand {:black [] :white []}
-                                              :played-tiles  [{:color    :white
-                                                               :insect   :queen
-                                                               :position {:x 1 :y 2}}
-                                                              {:color    :black
-                                                               :insect   :ant
-                                                               :position {:x 1, :y 0}}]})
-               next-game-states => (contains {:turn-number   2
-                                              :tiles-in-hand {:black [] :white []}
-                                              :played-tiles  [{:color    :white
-                                                               :insect   :queen
-                                                               :position {:x 1 :y 2}}
-                                                              {:color    :black
-                                                               :insect   :ant
-                                                               :position {:x 0, :y 1}}]})
-               next-game-states => (contains {:turn-number   2
-                                              :tiles-in-hand {:black [] :white []}
-                                              :played-tiles  [{:color    :white
-                                                               :insect   :queen
-                                                               :position {:x 1 :y 2}}
-                                                              {:color    :black
-                                                               :insect   :ant
-                                                               :position {:x 2, :y 1}}]})
-               next-game-states => (contains {:turn-number   2
-                                              :tiles-in-hand {:black [] :white []}
-                                              :played-tiles  [{:color    :white
-                                                               :insect   :queen
-                                                               :position {:x 1 :y 2}}
-                                                              {:color    :black
-                                                               :insect   :ant
-                                                               :position {:x 0, :y 3}}]})
-               next-game-states => (contains {:turn-number   2
-                                              :tiles-in-hand {:black [] :white []}
-                                              :played-tiles  [{:color    :white
-                                                               :insect   :queen
-                                                               :position {:x 1 :y 2}}
-                                                              {:color    :black
-                                                               :insect   :ant
-                                                               :position {:x 1, :y 4}}]})
-               next-game-states => (contains {:turn-number   2
-                                              :tiles-in-hand {:black [] :white []}
-                                              :played-tiles  [{:color    :white
-                                                               :insect   :queen
-                                                               :position {:x 1 :y 2}}
-                                                              {:color    :black
-                                                               :insect   :ant
-                                                               :position {:x 2, :y 3}}]})
+               next-game-states => (contains
+                                     (contains {:played-tiles
+                                                (just {:color    :white
+                                                       :insect   :queen
+                                                       :position {:x 1 :y 2}}
+                                                      {:color    :black
+                                                       :insect   :ant
+                                                       :position {:x 1, :y 0}})}))
+               next-game-states => (contains
+                                     (contains {:played-tiles
+                                                (just {:color    :white
+                                                       :insect   :queen
+                                                       :position {:x 1 :y 2}}
+                                                      {:color    :black
+                                                       :insect   :ant
+                                                       :position {:x 0, :y 1}})}))
+               next-game-states => (contains
+                                     (contains {:played-tiles
+                                                (just {:color    :white
+                                                       :insect   :queen
+                                                       :position {:x 1 :y 2}}
+                                                      {:color    :black
+                                                       :insect   :ant
+                                                       :position {:x 2, :y 1}})}))
+               next-game-states => (contains
+                                     (contains {:played-tiles
+                                                (just {:color    :white
+                                                       :insect   :queen
+                                                       :position {:x 1 :y 2}}
+                                                      {:color    :black
+                                                       :insect   :ant
+                                                       :position {:x 0, :y 3}})}))
+               next-game-states => (contains
+                                     (contains {:played-tiles
+                                                (just {:color    :white
+                                                       :insect   :queen
+                                                       :position {:x 1 :y 2}}
+                                                      {:color    :black
+                                                       :insect   :ant
+                                                       :position {:x 1, :y 4}})}))
+               next-game-states => (contains
+                                     (contains {:played-tiles
+                                                (just {:color    :white
+                                                       :insect   :queen
+                                                       :position {:x 1 :y 2}}
+                                                      {:color    :black
+                                                       :insect   :ant
+                                                       :position {:x 2, :y 3}})}))
                ))
 
        (fact "At start of game and with three tiles (but two indentical) black has correct valid moves"
@@ -126,145 +126,100 @@
                                :tiles-in-hand {:white [] :black black-tiles}}
                    next-game-states (valid-next-game-states game-state)]
                (count next-game-states) => 12
-               next-game-states => (contains {:turn-number   2
-                                              :tiles-in-hand {:black [{:color :black, :insect :ant}
-                                                                      {:color :black, :insect :queen}]
-                                                              :white []}
-                                              :played-tiles  [{:color    :white
-                                                               :insect   :queen
-                                                               :position {:x 1 :y 2}}
-                                                              {:color    :black
-                                                               :insect   :ant
-                                                               :position {:x 2, :y 3}}]})
-               next-game-states => (contains {:turn-number   2
-                                              :tiles-in-hand {:black [{:color :black, :insect :ant}
-                                                                      {:color :black, :insect :queen}]
-                                                              :white []}
-                                              :played-tiles  [{:color    :white
-                                                               :insect   :queen
-                                                               :position {:x 1 :y 2}}
-                                                              {:color    :black
-                                                               :insect   :ant
-                                                               :position {:x 1, :y 0}}]})
-               next-game-states => (contains {:turn-number   2
-                                              :tiles-in-hand {:black [{:color :black, :insect :ant}
-                                                                      {:color :black, :insect :queen}]
-                                                              :white []}
-                                              :played-tiles  [{:color    :white
-                                                               :insect   :queen
-                                                               :position {:x 1 :y 2}}
-                                                              {:color    :black
-                                                               :insect   :ant
-                                                               :position {:x 0, :y 1}}]})
+               next-game-states => (contains
+                                     (contains {:played-tiles (just {:color    :white
+                                                                     :insect   :queen
+                                                                     :position {:x 1 :y 2}}
+                                                                    {:color    :black
+                                                                     :insect   :ant
+                                                                     :position {:x 2, :y 3}})}))
 
-               next-game-states => (contains {:turn-number   2
-                                              :tiles-in-hand {:black [{:color :black, :insect :ant}
-                                                                      {:color :black, :insect :queen}]
-                                                              :white []}
-                                              :played-tiles  [{:color    :white
-                                                               :insect   :queen
-                                                               :position {:x 1 :y 2}}
-                                                              {:color    :black
-                                                               :insect   :ant
-                                                               :position {:x 2, :y 1}}]})
+               next-game-states => (contains
+                                     (contains {:played-tiles (just {:color    :white
+                                                                     :insect   :queen
+                                                                     :position {:x 1 :y 2}}
+                                                                    {:color    :black
+                                                                     :insect   :ant
+                                                                     :position {:x 1, :y 0}})}))
+               next-game-states => (contains
+                                     (contains {:played-tiles (just {:color    :white
+                                                                     :insect   :queen
+                                                                     :position {:x 1 :y 2}}
+                                                                    {:color    :black
+                                                                     :insect   :ant
+                                                                     :position {:x 0, :y 1}})}))
 
-               next-game-states => (contains {:turn-number   2
-                                              :tiles-in-hand {:black [{:color :black, :insect :ant}
-                                                                      {:color :black, :insect :queen}]
-                                                              :white []}
-                                              :played-tiles  [{:color    :white
-                                                               :insect   :queen
-                                                               :position {:x 1 :y 2}}
-                                                              {:color    :black
-                                                               :insect   :ant
-                                                               :position {:x 0, :y 3}}]})
+               next-game-states => (contains
+                                     (contains {:played-tiles (just {:color    :white
+                                                                     :insect   :queen
+                                                                     :position {:x 1 :y 2}}
+                                                                    {:color    :black
+                                                                     :insect   :ant
+                                                                     :position {:x 2, :y 1}})}))
 
-               next-game-states => (contains {:turn-number   2
-                                              :tiles-in-hand {:black [{:color :black, :insect :ant}
-                                                                      {:color :black, :insect :queen}]
-                                                              :white []}
-                                              :played-tiles  [{:color    :white
-                                                               :insect   :queen
-                                                               :position {:x 1 :y 2}}
-                                                              {:color    :black
-                                                               :insect   :ant
-                                                               :position {:x 1, :y 4}}]})
+               next-game-states => (contains
+                                     (contains {:played-tiles (just {:color    :white
+                                                                     :insect   :queen
+                                                                     :position {:x 1 :y 2}}
+                                                                    {:color    :black
+                                                                     :insect   :ant
+                                                                     :position {:x 0, :y 3}})}))
 
-               next-game-states => (contains {:turn-number   2
-                                              :tiles-in-hand {:black [{:color :black, :insect :ant}
-                                                                      {:color :black, :insect :queen}]
-                                                              :white []}
-                                              :played-tiles  [{:color    :white
-                                                               :insect   :queen
-                                                               :position {:x 1 :y 2}}
-                                                              {:color    :black
-                                                               :insect   :ant
-                                                               :position {:x 2, :y 3}}]})
+               next-game-states => (contains
+                                     (contains {:played-tiles (just {:color    :white
+                                                                     :insect   :queen
+                                                                     :position {:x 1 :y 2}}
+                                                                    {:color    :black
+                                                                     :insect   :ant
+                                                                     :position {:x 1, :y 4}})}))
 
-               next-game-states => (contains {:turn-number   2
-                                              :tiles-in-hand {:black [{:color :black, :insect :ant}
-                                                                      {:color :black, :insect :ant}]
-                                                              :white []}
-                                              :played-tiles  [{:color    :white
-                                                               :insect   :queen
-                                                               :position {:x 1 :y 2}}
-                                                              {:color    :black
-                                                               :insect   :queen
-                                                               :position {:x 1, :y 0}}]})
+               next-game-states => (contains
+                                     (contains {:played-tiles (just {:color    :white
+                                                                     :insect   :queen
+                                                                     :position {:x 1 :y 2}}
+                                                                    {:color    :black
+                                                                     :insect   :ant
+                                                                     :position {:x 2, :y 3}})}))
 
-               next-game-states => (contains {:turn-number   2
-                                              :tiles-in-hand {:black [{:color :black, :insect :ant}
-                                                                      {:color :black, :insect :ant}]
-                                                              :white []}
-                                              :played-tiles  [{:color    :white
-                                                               :insect   :queen
-                                                               :position {:x 1 :y 2}}
-                                                              {:color    :black
-                                                               :insect   :queen
-                                                               :position {:x 0, :y 1}}]})
 
-               next-game-states => (contains {:turn-number   2
-                                              :tiles-in-hand {:black [{:color :black, :insect :ant}
-                                                                      {:color :black, :insect :ant}]
-                                                              :white []}
-                                              :played-tiles  [{:color    :white
-                                                               :insect   :queen
-                                                               :position {:x 1 :y 2}}
-                                                              {:color    :black
-                                                               :insect   :queen
-                                                               :position {:x 2, :y 1}}]})
+               next-game-states => (contains
+                                     (contains {:played-tiles (just {:color    :white
+                                                                     :insect   :queen
+                                                                     :position {:x 1 :y 2}}
+                                                                    {:color    :black
+                                                                     :insect   :queen
+                                                                     :position {:x 1, :y 0}})}))
 
-               next-game-states => (contains {:turn-number   2
-                                              :tiles-in-hand {:black [{:color :black, :insect :ant}
-                                                                      {:color :black, :insect :ant}]
-                                                              :white []}
-                                              :played-tiles  [{:color    :white
-                                                               :insect   :queen
-                                                               :position {:x 1 :y 2}}
-                                                              {:color    :black
-                                                               :insect   :queen
-                                                               :position {:x 0, :y 3}}]})
+               next-game-states => (contains
+                                     (contains {:played-tiles (just {:color    :white
+                                                                     :insect   :queen
+                                                                     :position {:x 1 :y 2}}
+                                                                    {:color    :black
+                                                                     :insect   :queen
+                                                                     :position {:x 2, :y 1}})}))
 
-               next-game-states => (contains {:turn-number   2
-                                              :tiles-in-hand {:black [{:color :black, :insect :ant}
-                                                                      {:color :black, :insect :ant}]
-                                                              :white []}
-                                              :played-tiles  [{:color    :white
-                                                               :insect   :queen
-                                                               :position {:x 1 :y 2}}
-                                                              {:color    :black
-                                                               :insect   :queen
-                                                               :position {:x 1, :y 4}}]})
+               next-game-states => (contains
+                                     (contains {:played-tiles (just {:color    :white
+                                                                     :insect   :queen
+                                                                     :position {:x 1 :y 2}}
+                                                                    {:color    :black
+                                                                     :insect   :queen
+                                                                     :position {:x 0, :y 3}})}))
 
-               next-game-states => (contains {:turn-number   2
-                                              :tiles-in-hand {:black [{:color :black, :insect :ant}
-                                                                      {:color :black, :insect :ant}]
-                                                              :white []}
-                                              :played-tiles  [{:color    :white
-                                                               :insect   :queen
-                                                               :position {:x 1 :y 2}}
-                                                              {:color    :black
-                                                               :insect   :queen
-                                                               :position {:x 2, :y 3}}]})
+               next-game-states => (contains
+                                     (contains {:played-tiles (just {:color    :white
+                                                                     :insect   :queen
+                                                                     :position {:x 1 :y 2}}
+                                                                    {:color    :black
+                                                                     :insect   :queen
+                                                                     :position {:x 1, :y 4}})}))
+
+               next-game-states => (contains
+                                     (contains {:played-tiles (just {:color    :white
+                                                                     :insect   :queen
+                                                                     :position {:x 1 :y 2}}
+                                                                    {:color    :black
+                                                                     :insect   :queen
+                                                                     :position {:x 2, :y 3}})}))
 
                )))

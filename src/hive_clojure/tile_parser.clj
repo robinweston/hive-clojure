@@ -1,4 +1,6 @@
-(ns hive-clojure.tile-parser)
+(ns hive-clojure.tile-parser
+  (:require hive-clojure.domain)
+  (:import [hive_clojure.domain Tile]))
 
 (defn- parse-tile-insect [tile-string]
   (case (clojure.string/upper-case tile-string)
@@ -13,4 +15,4 @@
 (defn parse-tile [tile-string]
   (let [tile-color (parse-tile-color tile-string)
         insect (parse-tile-insect tile-string)]
-    {:insect insect, :color tile-color}))
+    (Tile. insect tile-color)))
