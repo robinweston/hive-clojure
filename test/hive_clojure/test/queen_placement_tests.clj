@@ -1,10 +1,8 @@
 (ns hive-clojure.test.queen-placement-tests
   (:require [midje.sweet :refer :all])
   (:require [hive-clojure.valid-move-generation :refer [valid-next-game-states]])
-  (:require [hive-clojure.test.helpers.hive-parser :refer [parse-test-hive-tiles]]))
-
-(defn last-moves [game-states]
-  (map (fn [game-state] (-> game-state :played-tiles last)) game-states))
+  (:require [hive-clojure.test.helpers.hive-parser :refer [parse-test-hive-tiles]])
+  (:require [hive-clojure.test.helpers.game-state-helper :refer [last-moves]]))
 
 (facts "about queen placement"
        (fact "White queen must be played by sixth turn"

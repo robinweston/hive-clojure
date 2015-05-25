@@ -1,7 +1,8 @@
 (ns hive-clojure.test.second-move-tests
   (:require [midje.sweet :refer :all])
   (:require [hive-clojure.valid-move-generation :refer [valid-next-game-states]])
-  (:require [hive-clojure.test.helpers.hive-parser :refer [parse-test-hive-tiles]]))
+  (:require [hive-clojure.test.helpers.hive-parser :refer [parse-test-hive-tiles]])
+  (:require [hive-clojure.test.helpers.game-state-helper :refer [last-moves]]))
 
 (facts "about second moves"
        (fact "White second move with one tile available has correct moves"
@@ -9,42 +10,21 @@
                    game-state {:turn-number   2
                                :played-tiles  (parse-test-hive-tiles "two-horizontal-queens")
                                :tiles-in-hand {:white white-tiles :black []}}
-                   next-game-states (valid-next-game-states game-state)]
-               (count next-game-states) => 3
-               next-game-states => (contains
-                                     (contains {:played-tiles (just {:color :white, :insect :queen, :position {:x 1, :y 2}}
-                                                                    {:color :black, :insect :queen, :position {:x 2, :y 3}}
-                                                                    {:color :white, :insect :ant, :position {:x 1, :y 0}})}))
-               next-game-states => (contains
-                                     (contains {:played-tiles (just {:color :white, :insect :queen, :position {:x 1, :y 2}}
-                                                                    {:color :black, :insect :queen, :position {:x 2, :y 3}}
-                                                                    {:color :white, :insect :ant, :position {:x 0, :y 1}})}))
-
-               next-game-states => (contains
-                                     (contains {:played-tiles (just {:color :white, :insect :queen, :position {:x 1, :y 2}}
-                                                                    {:color :black, :insect :queen, :position {:x 2, :y 3}}
-                                                                    {:color :white, :insect :ant, :position {:x 0, :y 3}})}))))
+                   next-game-states (valid-next-game-states game-state)
+                   all-last-moves (last-moves next-game-states)]
+               (count all-last-moves) => 3
+               all-last-moves => (contains {:color :white, :insect :ant, :position {:x 1, :y 0}})
+               all-last-moves => (contains {:color :white, :insect :ant, :position {:x 0, :y 1}})
+               all-last-moves => (contains {:color :white, :insect :ant, :position {:x 0, :y 3}})))
 
        (fact "Black second move with one tile available has correct moves"
              (let [black-tiles [{:color :black, :insect :ant}]
                    game-state {:turn-number   3
                                :played-tiles  (parse-test-hive-tiles "two-queens-and-a-white-spider")
                                :tiles-in-hand {:black black-tiles :white []}}
-                   valid-moves (valid-next-game-states game-state)]
-               (count valid-moves) => 3
-               valid-moves => (contains
-                                (contains {:played-tiles (just {:color :white, :insect :queen, :position {:x 2, :y 2}}
-                                                               {:color :black, :insect :queen, :position {:x 3, :y 3}}
-                                                               {:color :white, :insect :spider, :position {:x 1, :y 3}}
-                                                               {:color :black, :insect :ant, :position {:x 3, :y 5}})}))
-
-               valid-moves => (contains
-                                (contains {:played-tiles (just {:color :white, :insect :queen, :position {:x 2, :y 2}}
-                                                               {:color :black, :insect :queen, :position {:x 3, :y 3}}
-                                                               {:color :white, :insect :spider, :position {:x 1, :y 3}}
-                                                               {:color :black, :insect :ant, :position {:x 4, :y 2}})}))
-               valid-moves => (contains
-                                (contains {:played-tiles (just {:color :white, :insect :queen, :position {:x 2, :y 2}}
-                                                               {:color :black, :insect :queen, :position {:x 3, :y 3}}
-                                                               {:color :white, :insect :spider, :position {:x 1, :y 3}}
-                                                               {:color :black, :insect :ant, :position {:x 4, :y 4}})})))))
+                   next-game-states (valid-next-game-states game-state)
+                   all-last-moves (last-moves next-game-states)]
+               (count all-last-moves) => 3
+               all-last-moves => (contains {:color :black, :insect :ant, :position {:x 3, :y 5}})
+               all-last-moves => (contains {:color :black, :insect :ant, :position {:x 4, :y 2}})
+               all-last-moves => (contains {:color :black, :insect :ant, :position {:x 4, :y 4}}))))
