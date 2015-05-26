@@ -1,7 +1,7 @@
 (ns hive-clojure.valid-move-generation
-  (:require [hive-clojure.turn-ordering :refer [current-player current-opposition]])
-  (:require [hive-clojure.tile-positioning :refer [add-zero-position-to-tile apply-delta-to-position adjacent-positions generate-all-tile-position-combinations]])
-  (:require [clojure.set :as cs]))
+  (:require [hive-clojure.turn-ordering :refer [current-player current-opposition]]
+            [hive-clojure.tile-positioning :refer [add-zero-position-to-tile apply-delta-to-position adjacent-positions generate-all-tile-position-combinations]]
+            [clojure.set :as cs]))
 
 (defn- find-white-initial-moves [game-state]
   (->> game-state :tiles-in-hand :white (map add-zero-position-to-tile)))

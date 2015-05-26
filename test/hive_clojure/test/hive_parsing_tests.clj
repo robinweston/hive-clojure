@@ -1,6 +1,6 @@
 (ns hive-clojure.test.hive-parsing-tests
-  (:require [midje.sweet :refer :all])
-  (:require [hive-clojure.test.helpers.hive-parser :refer :all]))
+  (:require [midje.sweet :refer :all]
+            [hive-clojure.test.helpers.hive-parser :refer :all]))
 
 (facts "Tiles are positioned correctly when parsing grid"
        (fact "Empty hive has no tiles"

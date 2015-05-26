@@ -1,8 +1,8 @@
 (ns hive-clojure.test.second-move-tests
-  (:require [midje.sweet :refer :all])
-  (:require [hive-clojure.valid-move-generation :refer [valid-next-game-states]])
-  (:require [hive-clojure.test.helpers.hive-parser :refer [parse-test-hive-tiles]])
-  (:require [hive-clojure.test.helpers.game-state-helper :refer [last-moves]]))
+  (:require [midje.sweet :refer :all]
+            [hive-clojure.valid-move-generation :refer [valid-next-game-states]]
+            [hive-clojure.test.helpers.hive-parser :refer [parse-test-hive-tiles]]
+            [hive-clojure.test.helpers.game-state-helper :refer [last-moves]]))
 
 (facts "about second moves"
        (fact "White second move with one tile available has correct moves"

@@ -1,6 +1,6 @@
 (ns hive-clojure.test.tile-parsing-tests
-  (:require [midje.sweet :refer :all])
-  (:require [hive-clojure.tile-parser :refer [parse-tile]]))
+  (:require [midje.sweet :refer :all]
+            [hive-clojure.tile-parser :refer [parse-tile]]))
 
 (facts "Can parse insect types"
        (fact "Can parse white queen"

@@ -1,7 +1,7 @@
 (ns hive-clojure.test.turn-ordering-tests
-  (:require [midje.sweet :refer :all])
-  (:require [hive-clojure.valid-move-generation :refer [valid-next-game-states]])
-  (:require [hive-clojure.turn-ordering :refer [current-player]]))
+  (:require [midje.sweet :refer :all]
+            [hive-clojure.valid-move-generation :refer [valid-next-game-states]]
+            [hive-clojure.turn-ordering :refer [current-player]]))
 
 (facts "about turn ordering"
        (fact "White plays first"
