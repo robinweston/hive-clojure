@@ -1,5 +1,6 @@
 (ns hive-clojure.test.turn-ordering-tests
   (:require [midje.sweet :refer :all])
+  (:require [hive-clojure.valid-move-generation :refer [valid-next-game-states]])
   (:require [hive-clojure.turn-ordering :refer [current-player]]))
 
 (facts "about turn ordering"
@@ -13,4 +14,13 @@
 
        (fact "White plays third"
              (let [game-state {:turn-number 2}]
-               (current-player game-state) => :white)))
+               (current-player game-state) => :white))
+
+       (fact "Turn number increases"
+             (let [white-tiles [{:color :white, :insect :ant}]
+                   game-state {:turn-number   0
+                               :played-tiles  []
+                               :tiles-in-hand {:white white-tiles}}
+                   next-game-states (valid-next-game-states game-state)]
+               next-game-states => (has every? #(= (:turn-number %) 1))
+               )))
