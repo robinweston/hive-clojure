@@ -2,17 +2,18 @@
   (:require [midje.sweet :refer :all]
             [hive-clojure.valid-move-generation :refer [valid-next-game-states]]
             [hive-clojure.test.helpers.hive-parser :refer [parse-test-hive-tiles]]
-            [hive-clojure.test.helpers.game-state-helper :refer [last-moves]]))
+            [hive-clojure.test.helpers.game-state-helper :refer [last-moves]]
+            [hive-clojure.domain :refer [map->Board]]))
 
 (facts "about queen placement"
        (fact "White queen must be played by sixth turn"
              (let [white-tiles [{:color :white, :insect :ant}
                                 {:color :white, :insect :queen}]
-                   game-state {:turn-number   6
-                               :played-tiles  (parse-test-hive-tiles "sixth-turn")
-                               :tiles-in-hand {:white white-tiles :black []}}
-                   next-game-states (valid-next-game-states game-state)
-                   possible-moves (last-moves next-game-states)]
+                   board (map->Board {:turn-number   6
+                                :played-tiles  (parse-test-hive-tiles "sixth-turn")
+                                :tiles-in-hand {:white white-tiles :black []}})
+                   next-boards (valid-next-game-states board)
+                   possible-moves (last-moves next-boards)]
                (count possible-moves) => 3
                possible-moves => (contains {:color :white, :insect :queen, :position {:x 0, :y 2}})
                possible-moves => (contains {:color :white, :insect :queen, :position {:x 1, :y 1}})
