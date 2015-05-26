@@ -11,11 +11,11 @@
                                :played-tiles  (parse-test-hive-tiles "two-horizontal-queens")
                                :tiles-in-hand {:white white-tiles :black []}}
                    next-game-states (valid-next-game-states game-state)
-                   all-last-moves (last-moves next-game-states)]
-               (count all-last-moves) => 3
-               all-last-moves => (contains {:color :white, :insect :ant, :position {:x 1, :y 0}})
-               all-last-moves => (contains {:color :white, :insect :ant, :position {:x 0, :y 1}})
-               all-last-moves => (contains {:color :white, :insect :ant, :position {:x 0, :y 3}})))
+                   possible-moves (last-moves next-game-states)]
+               (count possible-moves) => 3
+               possible-moves => (contains {:color :white, :insect :ant, :position {:x 1, :y 0}})
+               possible-moves => (contains {:color :white, :insect :ant, :position {:x 0, :y 1}})
+               possible-moves => (contains {:color :white, :insect :ant, :position {:x 0, :y 3}})))
 
        (fact "Black second move with one tile available has correct moves"
              (let [black-tiles [{:color :black, :insect :ant}]
@@ -23,8 +23,8 @@
                                :played-tiles  (parse-test-hive-tiles "two-queens-and-a-white-spider")
                                :tiles-in-hand {:black black-tiles :white []}}
                    next-game-states (valid-next-game-states game-state)
-                   all-last-moves (last-moves next-game-states)]
-               (count all-last-moves) => 3
-               all-last-moves => (contains {:color :black, :insect :ant, :position {:x 3, :y 5}})
-               all-last-moves => (contains {:color :black, :insect :ant, :position {:x 4, :y 2}})
-               all-last-moves => (contains {:color :black, :insect :ant, :position {:x 4, :y 4}}))))
+                   possible-moves (last-moves next-game-states)]
+               (count possible-moves) => 3
+               possible-moves => (contains {:color :black, :insect :ant, :position {:x 3, :y 5}})
+               possible-moves => (contains {:color :black, :insect :ant, :position {:x 4, :y 2}})
+               possible-moves => (contains {:color :black, :insect :ant, :position {:x 4, :y 4}}))))
